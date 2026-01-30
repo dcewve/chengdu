@@ -1,0 +1,408 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei",
+    sans-serif;
+  background: radial-gradient(circle at top, #ffecd2 0, #ff2e2e 40%, #8b0000 100%);
+  color: #fff7f0;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(4px);
+}
+
+.header {
+  text-align: center;
+  padding: 24px 16px 12px;
+  background: linear-gradient(90deg, #b30000, #ff4d4f, #b30000);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h1 {
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.header-subtitle {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.main {
+  flex: 1;
+  padding: 8px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.config-panel,
+.display-panel {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.config-panel {
+  margin-top: 16px;
+}
+
+.config-panel h2,
+.display-panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  border-left: 4px solid #ffd666;
+  padding-left: 8px;
+}
+
+.config-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.config-row label {
+  min-width: 80px;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  outline: none;
+  min-width: 0;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+  border-color: #ffd666;
+  box-shadow: 0 0 0 1px rgba(255, 214, 102, 0.6);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.btn {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease,
+    opacity 0.1s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #ffec3d, #ffa940);
+  color: #7a0010;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn.danger {
+  background: linear-gradient(135deg, #ff4d4f, #cf1322);
+  color: #fff7f0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff7f0;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn:not(:disabled):active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.stats {
+  justify-content: space-between;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.display-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.current-level-banner {
+  text-align: center;
+  font-size: 1.8rem; /* 增大字号 */
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #ffe58f;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.current-level-banner span {
+  color: #ffd666;
+  margin-left: 5px;
+}
+
+/* 单独样式化人数显示 */
+#level-count-text {
+  color: #fff;
+  font-size: 1.4rem; /* 稍小一点的字号 */
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  margin-left: 5px;
+  animation: glow 1.2s ease-in-out infinite alternate;
+}
+
+.display-area {
+  flex: 1;
+  min-height: calc(100vh - 200px);
+  border-radius: 16px;
+  background: radial-gradient(circle at center, #ffd666 0, #ff4d4f 40%, #7a0010 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.overlay-controls {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.overlay-controls.hidden {
+  display: none;
+}
+
+.btn.big {
+  font-size: 1.1rem;
+  padding: 10px 22px;
+}
+
+.placeholder-text {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 修改当前姓名显示的样式，使其能容纳多行 */
+.current-name {
+  position: absolute;
+  width: 90%;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 14px rgba(0, 0, 0, 0.7);
+  animation: glow 1.2s ease-in-out infinite alternate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.current-name.single {
+  font-size: 8.5rem;
+}
+
+.current-name.multiple {
+  font-size: 4.5rem;
+  line-height: 1.4;
+}
+
+.current-name.hidden {
+  display: none;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.7),
+      0 0 14px rgba(255, 214, 102, 0.8);
+  }
+  to {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.9),
+      0 0 20px rgba(255, 77, 79, 0.9);
+  }
+}
+
+.winners-panel {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.winner-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.winner-group h3 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.winner-list {
+  list-style: none;
+  font-size: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.winner-list li {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pool-and-result {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 2fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pool-panel h3,
+.result-panel h3 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.pool-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.pool-list li {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.1s ease, transform 0.1s ease, border-color 0.1s ease;
+}
+
+.pool-list li:hover {
+  background: rgba(255, 214, 102, 0.18);
+  transform: translateY(-1px);
+  border-color: rgba(255, 214, 102, 0.7);
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 8px 16px;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 960px) {
+  .main {
+    padding: 8px 10px 10px;
+  }
+
+  .current-name.single {
+    font-size: 4.2rem;
+  }
+  
+  .current-name.multiple {
+    font-size: 3.5rem;
+  }
+  
+  .current-level-banner {
+    font-size: 1.5rem;
+  }
+  
+  #level-count-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .current-name.single {
+    font-size: 3.4rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .current-name.multiple {
+    font-size: 2.8rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .current-level-banner {
+    font-size: 1.2rem;
+  }
+  
+  #level-count-text {
+    font-size: 1rem;
+  }
+}
+
+.hint-text {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* 移除原有的奖项信息样式 */

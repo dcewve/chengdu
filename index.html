@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>中粮生化（成都）有限公司年会抽奖活动</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1>中粮生化（成都）有限公司年会抽奖活动</h1>
+        <div class="header-subtitle"></div>
+      </header>
+
+      <main class="main">
+        <!-- 顶部：全屏显示当前奖项 + 抽奖姓名 -->
+        <section class="display-panel">
+          <div class="current-level-banner">
+            当前抽取奖项：
+            <span id="current-level-text">三等奖</span>
+            <!-- 在这里添加人数显示 -->
+            <span id="level-count-text">（8人）</span>
+          </div>
+          <div id="display-area" class="display-area">
+            <div class="placeholder-text">
+              抽奖开始前显示当前奖项中奖结果<br />
+              请点击下方"开始抽奖"
+            </div>
+            <div id="current-name" class="current-name hidden"></div>
+            <div id="overlay-controls" class="overlay-controls">
+              <button id="start-btn" class="btn primary big">开始抽奖</button>
+              <button id="stop-btn" class="btn danger big" disabled>停止/确认</button>
+              <button id="reset-round-btn" class="btn ghost big">重置本轮</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 底部：控制面板，仅操作人员可见 -->
+        <section class="config-panel">
+          <h2>抽奖设置</h2>
+
+          <div class="config-row">
+            <label for="level-select">当前奖项：</label>
+            <select id="level-select">
+              <option value="third" selected>三等奖 (抽取8人)</option>
+              <option value="second">二等奖 (抽取5人)</option>
+              <option value="first">一等奖 (抽取3人)</option>
+              <option value="special">特等奖 (抽取2人)</option>
+            </select>
+          </div>
+
+          <div class="config-row">
+            <label for="count-input">本轮抽取人数：</label>
+            <input
+              id="count-input"
+              type="number"
+              min="1"
+              value="8"
+              readonly
+              style="background-color: rgba(0,0,0,0.5);"
+            />
+            <span class="hint-text">根据奖项自动设置</span>
+          </div>
+
+          <div class="config-row">
+            <span>抽奖模式：</span>
+            <label class="radio-label">
+              <input type="radio" name="mode" value="auto" checked />
+              自动
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="mode" value="manual" />
+              手动
+            </label>
+          </div>
+
+          <div class="config-row">
+            <label for="auto-duration">自动模式滚动时间（秒）：</label>
+            <input
+              id="auto-duration"
+              type="number"
+              min="1"
+              value="5"
+            />
+            <label class="radio-label">
+              <input type="checkbox" id="auto-random" />
+              随机时间（在 1 ~ 上述秒数范围内随机）
+            </label>
+          </div>
+          <div class="config-row">
+            <label for="flash-interval">姓名闪烁间隔（毫秒）：</label>
+            <input
+              id="flash-interval"
+              type="number"
+              min="30"
+              max="500"
+              value="80"
+            />
+            <span class="hint-text">数值越小，闪烁越快</span>
+          </div>
+
+          <div class="config-row">
+            <label for="names-import">导入奖池姓名：</label>
+            <textarea
+              id="names-import"
+              rows="3"
+              placeholder="在此粘贴姓名，使用换行、中文逗号或英文逗号分隔；导入后将追加到当前奖池"
+            ></textarea>
+          </div>
+          <div class="config-row">
+            <button id="apply-import-btn" class="btn ghost">
+              导入并追加到当前奖池
+            </button>
+          </div>
+
+          <div class="pool-and-result">
+            <div class="pool-panel">
+              <h3>当前奖池人员（点击姓名可删除）：</h3>
+              <ul id="pool-list" class="pool-list"></ul>
+            </div>
+            <div class="result-panel">
+              <h3>中奖结果展示：</h3>
+              <div class="winner-groups">
+                <div class="winner-group">
+                  <h4>特等奖 (2人)</h4>
+                  <ul id="winners-special" class="winner-list"></ul>
+                </div>
+                <div class="winner-group">
+                  <h4>一等奖 (3人)</h4>
+                  <ul id="winners-first" class="winner-list"></ul>
+                </div>
+                <div class="winner-group">
+                  <h4>二等奖 (5人)</h4>
+                  <ul id="winners-second" class="winner-list"></ul>
+                </div>
+                <div class="winner-group">
+                  <h4>三等奖 (8人)</h4>
+                  <ul id="winners-third" class="winner-list"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>中粮生化（成都）有限公司年会抽奖活动 · 中奖后自动移除不再参与后续抽奖</span>
+      </footer>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

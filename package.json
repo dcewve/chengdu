@@ -1,0 +1,15 @@
+{
+  "name": "zhongliang-chengdu-annual-lottery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "中粮生化（成都）有限公司年会抽奖活动 单页网站",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "lottery",
+    "annual-party",
+    "zhongliang",
+    "chengdu"
+  ]
+}
